@@ -9,7 +9,7 @@ public class ArcadeKartPowerup : MonoBehaviour {
         MaxTime = 5
     };
 
-    public bool isCoolingDown { get; private set; }
+    public bool isCoolingDown { get; private set; }     // get = public ; set = private ; ==> lecture seule 
     public float lastActivatedTimestamp { get; private set; }
 
     public float cooldown = 5f;
@@ -18,7 +18,7 @@ public class ArcadeKartPowerup : MonoBehaviour {
     public UnityEvent onPowerupActivated;
     public UnityEvent onPowerupFinishCooldown;
 
-    private void Awake()
+    private void Awake()        // metre en place avant update / start 
     {
         lastActivatedTimestamp = -9999f;
     }
@@ -26,9 +26,9 @@ public class ArcadeKartPowerup : MonoBehaviour {
 
     private void Update()
     {
-        if (isCoolingDown) { 
+        if (isCoolingDown) {        // espece de timer
 
-            if (Time.time - lastActivatedTimestamp > cooldown) {
+            if (Time.time - lastActivatedTimestamp > cooldown) {        // Time.time = le temps au debut de cette frame // time - la derniere fois ou elle a ete activé 
                 //finished cooldown!
                 isCoolingDown = false;
                 onPowerupFinishCooldown.Invoke();
